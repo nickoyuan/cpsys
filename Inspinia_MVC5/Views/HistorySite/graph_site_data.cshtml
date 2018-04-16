@@ -1,0 +1,54 @@
+﻿@model newtest.Models.site_history.graph_partial_test
+
+
+<head>
+  
+</head>
+
+
+
+
+    @for (var i = 0; i < Model.selected_num.Count; i++)
+    {
+       
+            <div class="graph_title">
+                <i class="fa fa-check-circle"></i>
+                <span class="graph_font">@Html.ValueFor(x => Model.selected_name[i])</span>
+            </div>
+            
+            <div class="partialContent" data-url="/HistorySite/graph_plot?options=@Html.DisplayFor(x=> Model.selected_num[i])&from=@Html.DisplayFor(x=> Model.data_from[0])&to=@Html.DisplayFor(x=> Model.data_to[0])&sitename=@Html.DisplayFor(x=> Model.sitename[0])">
+
+                <!--Good Spinner Example-->
+                <div id="@Html.DisplayFor(x=> Model.selected_num[i])" class="spiner-example">
+                    <div class="sk-spinner sk-spinner-double-bounce">
+                        <div class="sk-double-bounce1"></div>
+                        <div class="sk-double-bounce2"></div>
+                    </div>
+                </div>
+
+            </div>
+    }
+
+
+
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+        var site = site || {};
+        site.baseUrl = site.baseUrl || "";
+
+        $(".partialContent").each(function (index, item) {
+            var url = site.baseUrl + $(item).data("url");
+            if (url && url.length > 0) {
+                $(item).load(url);
+            }
+        });
+
+    });
+
+
+</script>

@@ -1,0 +1,121 @@
+﻿
+
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="nav-header">
+                <div class="dropdown profile-element">
+                    <span>
+                        <img alt="image" class="img-circle" src="~/images/eelogo.png" />
+                    </span>
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">Jacob EE</strong>
+                            </span> <span class="text-muted text-xs block">Software Engineer<b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                        <li><a href="@Url.Action("profile_view", "Profile")">Profile</a></li>
+                        <li><a href="@Url.Action("profile_sites", "Profile")">Sites</a></li>
+                        <li><a href="@Url.Action("profile_tasks", "Profile")">Tasks</a></li>
+                        <li class="divider"></li>   
+                        <li><a href="@Url.Action("Index","Home")">Logout</a></li>
+                    </ul>
+                </div>
+                <div class="logo-element">
+                    EE
+                </div>
+            </li>
+
+            <!-- Dashboard -->
+            <li class="@Html.IsSelected(controller: "Dashboards")">
+                <a href="@Url.Action("Dashboard", "Dashboard")"><i class="fa fa-th-large"></i> <span class="nav-label" data-i18n="nav.dashboard">Dashboards</span></a>
+            </li>
+          
+            <!-- Site Test History -->
+            <li class="@Html.IsSelected(controller: "Graphs")">
+                <a href="@Url.Action("site_data_test", "HistorySite")"><i class="fa fa-bar-chart-o"></i> <span class="nav-label" data-i18n="nav.graphs">Site Test History</span></a>
+            </li>
+
+            <!-- I/O Alarms -->
+            <li class="@Html.IsSelected(controller: "Metrics")">
+                <a href="@Url.Action("ioalarm_history", "ioalarms")"><i class="fa fa-pie-chart"></i> <span class="nav-label" data-i18n="nav.metrics">I/O Alarms</span> </a>
+            </li>
+           
+            <!-- Account Settings -->
+            <li class="@Html.IsSelected(controller: "Forms")">
+                <a href="@Url.Action("site_list","siteaccount")"><i class="fa fa-edit"></i> <span class="nav-label" data-i18n="nav.forms">Account Settings</span></a>
+            </li>
+              
+            <!-- Site Settings -->
+            @*<li class="@Html.IsSelected(controller: "Pages")">
+                <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label" data-i18n="nav.otherpages">Site Settings</span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Pages", cssClass: "in")">
+                    <li class="@Html.IsSelected(action: "SearchResults")"><a href="@Url.Action("SearchResults", "Pages")">Normal User Accounts</a></li>
+                    <li class="@Html.IsSelected(action: "LockScreen")"><a href="@Url.Action("LockScreen", "Pages")">Site Accounts</a></li>
+                    <li class="@Html.IsSelected(action: "Invoice")"><a href="@Url.Action("Invoice", "Pages")">Serial Accounts</a></li>
+                </ul>
+            </li>*@
+
+            <!-- Comms Responses -->
+            <li class="@Html.IsSelected(controller: "Miscellaneous")">
+                <a href="@Url.Action("comms_response","response")"><i class="fa fa-files-o"></i> <span class="nav-label" data-i18n="nav.miscellaneous">Comms Response</span></a>
+            </li>
+
+            <!-- Alert Configuration -->
+            <li class="@Html.IsSelected(controller: "UIElements")">
+                <a href="@Url.Action("emailsms","emailandsms")"><i class="fa fa-globe"></i><span class="nav-label" data-i18n="nav.uielements">Email/SMS Configuration</span></a>
+            </li>
+
+
+            <!-- chparams -->
+            <li class="@Html.IsSelected(controller: "CH_Elements")">
+                <a href="@Url.Action("chparams","customurl")"><i class="fa fa-globe"></i><span class="nav-label" data-i18n="nav.uielements">CH Params</span></a>
+            </li>
+      
+            @*<li>
+                <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label" data-i18n="nav.menulevels">Management System </span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#">Third Level <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#">Third Level Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Third Level Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Third Level Item</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li><a href="#">Second Level Item</a></li>
+                    <li>
+                        <a href="#">Second Level Item</a>
+                    </li>
+                    <li>
+                        <a href="#">Second Level Item</a>
+                    </li>
+                </ul>
+            </li>*@
+
+            @*<li class="@Html.IsSelected(controller: "CSSAnimations")">
+                <a href="@Url.Action("Index", "CSSAnimations")"><i class="fa fa-magic"></i> <span class="nav-label" data-i18n="nav.animations">CSS Animations </span><span class="label label-info pull-right">62</span></a>
+            </li>
+            <li class="special_link @Html.IsSelected(controller: " Landing")">
+                <a href="@Url.Action("Index", "Landing")"><i class="fa fa-star"></i> <span class="nav-label" data-i18n="nav.landing">Landing page</span></a>
+            </li>
+            <li class="special_link @Html.IsSelected(controller: " Scaffolding")">
+                <a href="@Url.Action("Index", "Scaffolding")"><i class="fa fa-database"></i> <span class="nav-label">Scaffolding Example</span></a>
+            </li>
+            <li class="special_link @Html.IsSelected(controller: " Json")">
+                <a href="@Url.Action("Index", "Json")"><i class="fa fa-plug"></i> <span class="nav-label">JSON Examples</span></a>
+            </li>*@
+
+         
+        </ul>
+    </div>
+</nav>

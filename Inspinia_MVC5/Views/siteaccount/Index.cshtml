@@ -1,0 +1,480 @@
+﻿
+@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+@{
+    ViewBag.Title = "Notification";
+}
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Site and User Configuration</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboards", "Dashboards")">Home</a>
+            </li>
+          
+            <li class="active">
+                <strong>User and Site Settings</strong>
+            </li>
+        </ol>
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+</div>
+<div class="wrapper wrapper-content animated fadeInLeft">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1">Add Site</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-2">Add Serial</a></li>
+                        <li class=""><a data-toggle="tab" href="#tab-3">Add User</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+
+                            <div class="panel-body">
+                                <div class="ibox-title" style="border-style: none;">
+                                    <h5>Create new Site</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-user">
+                                            <li>
+                                                <a href="#">Config option 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Config option 2</a>
+                                            </li>
+                                        </ul>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="title">Site name</label>
+                                                <input id="title" type="text" class="form-control" placeholder="Enter a new Site name ..." />
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="message">Serial </label>
+                                                <select data-placeholder="Choose a Site..." class="chosen-select  form-control" name="serial">
+                                                    <option>Pool</option>
+                                                    <option>Shopping</option>
+                                                    <option>Basketball</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="message">Time Zone</label>
+                                                <select data-placeholder="Choose a Site..." class="chosen-select  form-control" name="tmzone">
+                                                    <option>Australia</option>
+                                                    <option>China</option>
+                                                    <option>Turkey</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <button type="button" class="btn btn-primary" id="showsimple">Show Toast</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        <div id="tab-2" class="tab-pane">
+                            <div class="panel-body">
+                            <div class="ibox-title" style="border-style: none;">
+                                <h5>Create new Serial</h5>
+                                <div class="ibox-tools">
+                                    <a class="collapse-link">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        <i class="fa fa-wrench"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-user">
+                                        <li>
+                                            <a href="#">Config option 1</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Config option 2</a>
+                                        </li>
+                                    </ul>
+                                    <a class="close-link">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="title">Terminal Serial</label>
+                                            <div class="input-group">
+                                                <input id="title" type="text" class="form-control" placeholder="Enter a new Serial..." />
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-facebook" type="button">Auto Generate</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                 
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <button type="button" class="btn btn-primary" id="showsimples">Show Toast</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        </div>
+                        <div id="tab-3" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="ibox-title" style="border-style: none;">
+                                    <h5>Create new User</h5>
+                                    <div class="ibox-tools">
+                                        <a class="collapse-link">
+                                            <i class="fa fa-chevron-up"></i>
+                                        </a>
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <i class="fa fa-wrench"></i>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-user">
+                                            <li>
+                                                <a href="#">Config option 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Config option 2</a>
+                                            </li>
+                                        </ul>
+                                        <a class="close-link">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="ibox-content">
+
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <div class="product-images">
+
+                                                <div>
+                                                    <div class="image-imitation">
+                                                        [IMAGE 1]
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <form role="form" id="form">
+                                                <div class="form-group">
+                                                    <label for="title">User name</label>
+                                                    <input  type="text" class="form-control" name="username" placeholder="Enter a new Username ..." />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="title">Password</label>
+                                                    <input type="password" class="form-control" name="password" placeholder="Enter a new Password ..." />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="title">Confirm</label>
+                                                    <input type="password" class="form-control" name="confirmpass" placeholder="Confirm Password..." />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Select Site to Add</label>
+                                                    <select data-placeholder="Choose a Site..." class="form-control" name="serial">
+                                                        <option>Pool</option>
+                                                        <option>Shopping</option>
+                                                        <option>Basketball</option>
+                                                    </select>
+                                                </div>
+
+
+                                                    <div class="btn-group">
+                                                        <button class="btn btn-primary btn-sm"><i class="fa fa-user"></i> Show all User</button>
+                                                        <button class="btn btn-white btn-sm"><i class="fa fa-star"></i>Save Draft</button>
+                                                        <button class="btn btn-white btn-sm"><i class="fa fa-envelope"></i> Contact with author </button>
+                                                    </div>
+                                                
+                                            </form>
+
+
+                                    </div>
+                                        
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <button type="button" class="btn btn-primary" id="showsimple">Show Toast</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div class="row">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Site List</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#">Config option 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ibox-content">
+                <table class="table table-striped table-bordered table-hover dataTables-example">
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Site Name</th>
+                            <th>Terminal Serial</th>
+                            <th>Time Zone</th>
+                            <th>HG Status</th>
+                            <th>Data Types</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Online</td>
+                            <td>Trident</td>
+                            <td>
+                                Internet
+                                Explorer 4.0
+                            </td>
+                            <td>Win 95+</td>
+                            <td class="center">4</td>
+                            <td class="center">X</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs">View</button>
+                                    <button class="btn-white btn btn-xs">Edit</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="gradeC">
+                            <td>Down</td>
+                            <td>Trident</td>
+                            <td>
+                                Internet
+                                Explorer 5.0
+                            </td>
+                            <td>Win 95+</td>
+                            <td class="center">5</td>
+                            <td class="center">C</td>
+                            <td class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn-white btn btn-xs">View</button>
+                                    <button class="btn-white btn btn-xs">Edit</button>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+
+@section Styles {
+    @Styles.Render("~/plugins/toastrStyles")
+
+    <!-- This is for the Search bar-->
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+  
+   <!--For the table-->
+   @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/toastr")
+
+    @Scripts.Render("~/plugins/chosen")
+  
+    @Scripts.Render("~/plugins/jeditable")
+    @Scripts.Render("~/plugins/dataTables")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/plugins/validate")
+
+<script type="text/javascript">
+    $(document).ready(function (e) {
+
+        var site = site || {};
+        site.baseUrl = site.baseUrl || "";
+
+        $(".partialContent").each(function (index, item) {
+            var url = site.baseUrl + $(item).data("url");
+            if (url && url.length > 0) {
+                $(item).load(url);
+            }
+        });
+
+    });
+
+
+</script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+     
+
+
+         
+            $('#showsimple').click(function () {
+                // Display a success toast, with a title
+                toastr.success('Without any options', 'Simple notification!')
+            });
+
+            $('#showsimples').click(function () {
+                // Display a success toast, with a title
+                toastr.success('Without any options', 'Simple notification!')
+            });
+
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': { allow_single_deselect: true },
+                '.chosen-select-no-single': { disable_search_threshold: 10 },
+                '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+                '.chosen-select-width': { width: "95%" }
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+           
+
+            $('.dataTables-example').DataTable({
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy' },
+                    { extend: 'csv' },
+                    { extend: 'excel', title: 'ExampleFile' },
+                    { extend: 'pdf', title: 'ExampleFile' },
+
+                    {
+                        extend: 'print',
+                        customize: function (win) {
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                        }
+                    }
+                ]
+
+            });
+
+            /* Init DataTables */
+            var oTable = $('#editable').dataTable();
+
+            /* Apply the jEditable handlers to the table */
+            oTable.$('td').editable('../example_ajax.php', {
+                "callback": function (sValue, y) {
+                    var aPos = oTable.fnGetPosition(this);
+                    oTable.fnUpdate(sValue, aPos[0], aPos[1]);
+                },
+                "submitdata": function (value, settings) {
+                    return {
+                        "row_id": this.parentNode.getAttribute('id'),
+                        "column": oTable.fnGetPosition(this)[2]
+                    };
+                },
+
+                "width": "90%",
+                "height": "100%"
+            });
+
+
+        });
+
+
+        function fnClickAddRow() {
+            $('#editable').dataTable().fnAddData([
+                "Custom row",
+                "New row",
+                "New row",
+                "New row",
+                "New row"]);
+
+        }
+
+        $("#form").validate({
+            rules: {
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                username: {
+                    required: true,
+                    minlength: 3
+                },
+                confirmpass: {
+                    required: true
+                },
+               
+            }
+        });
+    </script>
+}
+
+

@@ -1,0 +1,69 @@
+﻿@model  IEnumerable<stay_calm_db_tests.newusers>
+
+
+
+<head>
+    <style>
+        .table {
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+
+        #details {
+            padding-left: 50px;
+            
+        }
+        .view_sites{
+            margin-left: 100px;
+            margin-top: 30px;
+        }
+
+        .view_serial{
+            margin-left: 100px;
+            margin-top: 10px;
+            float:left;
+        }
+    </style>
+</head>
+
+<h2 id="details">All Normal User Accounts</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Username </th>
+            <th>Password </th>
+            <th>Email </th>
+            <th>Edit </th>
+            <th>Delete User </th>
+            <th>Sites</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelitem => item.username)</td>
+                <td>@Html.DisplayFor(modelitem => item.password)</td>
+                <td>@Html.DisplayFor(modelitem => item.email)</td>
+                <td>@Html.ActionLink("Edit", "edit_normal_user", new { ID = item.ID })</td>
+                <td>@Html.ActionLink("Delete", "delete_normal_user", new { ID = item.ID })</td>
+                <td>@Html.ActionLink("Site attached", "error_site_display", new { ID = item.ID })</td>
+               
+            </tr>
+         }
+    </tbody>
+</table>
+
+<div class="view_sites">
+    <h2>All Sites</h2>
+    <p>@Html.ActionLink("View Sites", "view_sites")</p>
+</div>
+
+<div class="view_serial">
+    <h2>All Serial Boards</h2>
+    <p>@Html.ActionLink("View boards", "view_serial")</p>
+</div>
+
+
+

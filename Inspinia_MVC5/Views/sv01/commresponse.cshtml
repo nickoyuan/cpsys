@@ -1,0 +1,9 @@
+﻿@model stay_calm_db_comms.hgstatus_controller_alert
+@ViewBag.gmt_now@ViewBag.freq@ViewBag.response@ViewBag.findcount@{
+    for (var i = 0; i < Model.sites.Count; i++)
+    {
+        @Html.DisplayFor(x => Model.sites[i])
+
+
+    }
+}

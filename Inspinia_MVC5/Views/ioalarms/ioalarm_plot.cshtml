@@ -1,0 +1,285 @@
+﻿@model newtest.Models.ioalarmmodel.ioalarm_plotmodel
+
+<style>
+        #@ViewBag.name{
+                width: 85%;
+                height: 400px;
+                margin-bottom: 38px;
+        }
+</style>
+@ViewBag.options
+@ViewBag.sitename
+
+@if (Model == null)
+{
+    <div id="nomodel" style="color:black" onload="myFunction()">
+        <p>
+            No Data Found
+        </p>
+    </div>
+}
+else
+{
+    <div id="@ViewBag.name">
+
+    </div>
+
+
+
+    <div class="graph_table">
+        <table class="table table-hover table_design" style="width: 1184px;margin-left: 71px;">
+            <thead>
+                <tr>
+                    <th>Name </th>
+                    <th>Min </th>
+                    <th>Max </th>
+                    <th>AVG </th>
+                    <th>Lastest data</th>
+                    <th>Last Received</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>@ViewBag.title</td>
+                    <td>@Html.DisplayFor(x => Model.graph_min)</td>
+                    <td>@Html.DisplayFor(x => Model.graph_max)</td>
+                    <td>@Html.DisplayFor(x => Model.graph_avg)</td>
+                    <td>@Html.DisplayFor(x => Model.graph_data_late)</td>
+                    <td>@Html.DisplayFor(x => Model.graph_data_date)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <script>
+     $(function () {
+        var year = JSON.parse('@Html.Raw(Json.Encode(Model.year_graph))');
+        var graph_values = JSON.parse('@Html.Raw(Json.Encode(Model.value_of_graph))');
+
+
+         var data = [];
+
+         var counter = 0;
+
+         for (var i = 0; i < year.length; i++) {
+             var datapoint = [];
+
+             datapoint.push(year[i]);
+             datapoint.push(graph_values[i]);
+             data.push(datapoint);
+             counter = counter + 1;
+         }
+
+        // ////////////////////
+        //Highcharts.setOptions({
+        //    global: {
+        //        useUTC: false
+        //    }
+        //});
+
+
+
+        var chart1 = new Highcharts.Chart({
+
+
+            chart: {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+                    stops: [
+                       [0, '#ffffff'],
+                       [1, '#ffffff']
+                    ],
+                    type: 'spline'
+                },
+
+
+              //  borderColor: '#EBBA95',
+              //  borderRadius: 20,
+              //  borderWidth: 2,
+                zoomType: 'x',
+                renderTo: @ViewBag.name,
+                spacingBottom: 30,
+
+            },
+
+            colors: ['#7C4B75'],
+
+            title: {
+                style: {
+                    color: '#003C6C',
+                    textTransform: 'uppercase',
+                    fontSize: '20px'
+                },
+
+                text: '@ViewBag.title',
+                x: -20, //center
+                y: 25
+            },
+            subtitle: {
+                style: {
+                    color: '#003C6C',
+                    fontWeight: 'bold'
+
+                },
+
+                text: 'Elemental Electronics | Click and drag to zoom',
+                x: -20,
+
+
+            },
+            xAxis: {
+                type: 'datetime',
+
+                dateTimeLabelFormats: { // don't display the dummy year
+                    second: '%H:%M',
+                    minute: '%H:%M',
+                    hour: '%H:%M',
+
+                },
+
+                    style: {
+                        color: '#B200FF'
+                    }
+
+
+
+
+                },
+
+
+
+            yAxis: {
+
+                title: {
+                    text: 'ppm',
+
+                    style: {
+                        color: '#B200FF'
+                    }
+                },
+
+
+        //         plotBands: [
+        //        {
+        //            color: 'orange', // Color value
+        //            from: lower_limit_from, // Start of the plot band
+        //            to: lower_limit_to // End of the plot band
+        //                        , label: {
+        //                            text: 'Lower Range: 1 ppm',
+        //                            color: '#ffffff',
+        //                            align: 'left'
+
+        //                        }
+
+        //        },
+        //               {
+        //                   label: {
+        //                       text: 'Upper Range: 5ppm',
+        //                       color: '#ffffff',
+        //                       align: 'left'
+
+        //                   },
+
+        //                   color: 'orange', // Color value
+        //                   from: upper_limit_from, // Start of the plot band
+        //                   to: upper_limit_to// End of the plot band
+        //               }
+
+
+
+
+        //],
+
+
+            },
+
+
+            tooltip: {
+                backgroundColor: {
+                    linearGradient: [0, 0, 0, 60],
+                    stops: [
+                        [0, '#7C4B75'],
+                        [1, '#7C4B75']
+                    ]
+                },
+                borderWidth: 1,
+                borderColor: '#7CB5EC',
+
+                valueSuffix: 'ppm',
+
+
+                formatter: function () {
+
+
+
+                    return '<b style="color: white">EE - CPSYS PROOF OF CONCEPT :' + '@ViewBag.timezone' + '</b><br>'
+                    + '<p style="color: white">' + Highcharts.dateFormat('%e %b %Y', this.x) + ' ' + ' ' + '<br><p style="color: white"> ' + Highcharts.dateFormat('%H: %M: %S', this.x) + '</p><br>'
+                    + '<p style="color: white">' + this.series.name + '= ' + this.y + '</p>';
+
+
+
+                }
+
+
+
+            },
+
+            // extra link Used for dynamic on click label change
+            //ttp://jsfiddle.net/8g9L5e3q/3/
+
+
+            //ttp://jsfiddle.net/ricardolohmann/Q6yQs/
+            // Labels can be used anywhere
+            labels: {
+                items: [{
+                    html: "Date Range: " + '@ViewBag.datefrom  -' + ' @ViewBag.dateto',
+
+                    style: {
+                        left: '100px',
+                        top: '380px',
+                        width: '100px'
+                    }
+                }]
+            },
+
+            //ttp://stackoverflow.com/questions/30195936/highcharts-set-series-text-colour
+            // This is the only way to change the series name
+            legend: {
+                labelFormat: '<span style="color:{color}">{name}</span>'
+            },
+
+            series: [{
+               // Colour : " #3913" this is used to change colour of the lines
+                name: '@ViewBag.title',
+                data: data,
+                marker: {
+                    fillColor: '#FFFFFF',
+                    enabled: true,
+                    lineWidth: 2,
+                    lineColor: null // inherit from series
+                }
+
+            }]
+        });
+
+        
+
+     });
+
+    </script>
+
+}
+<script>
+
+    $(function myFunction() {
+
+        $("#@Html.DisplayFor(x => Model.selected_num[0])").remove();
+
+    });
+
+
+
+
+</script>

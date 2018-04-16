@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Login Page";
+}
+
+@model newtest.Models.loginmodel.userlogin
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Elemental Electronics Login</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/Content/style.css" rel="stylesheet">
+
+</head>
+
+<body class="unique-bg">
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                @*<h1 class="logo-name">E ᴲ</h1>*@
+                <img alt="image" class="img-circle" src="~/images/eelogo.png" />
+
+            </div>
+            <h3 class="login-text-bg">Welcome to EE Monitoring System</h3>
+            <p class="login-text-bg login-text-mod">
+                Elemental Electronics aims to connect the World to the Internet of Things (IoT) and use big data to improve, monitor and manufacture the newest state of the art Technology
+            </p>
+            <p>Login in. To see it in action.</p>
+
+            <!--Form loggin is in here-->
+
+
+
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "m-t" }))
+            {
+
+                // This is for create from tag
+                @Html.AntiForgeryToken()  //this is for prevetion of CSRF attack
+                                        @Html.ValidationSummary(true)
+
+                                        <div class="form-group">
+                                            @Html.TextBoxFor(model => model.username, new { @class = "form-control", @placeholder = "Username" })
+                                            @Html.ValidationMessageFor(model => model.username)
+                                        </div>
+                                        <div class="form-group">
+
+                                            @Html.PasswordFor(model => model.password, new { @class = "form-control", @placeholder = "Password" })
+                                            @Html.ValidationMessageFor(model => model.password)
+                                        </div>
+                                        <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+
+            }
+            <p class="m-t"> <small>Elemental Electronics Pty Ltd. All rights reserved.&copy; 2013</small> </p>
+        </div>
+    </div>
+
+</body>
+
+</html>

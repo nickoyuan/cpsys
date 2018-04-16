@@ -1,0 +1,811 @@
+﻿@model newtest.Models.site_history.regular_site_proof
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/adapters/standalone-framework.js"></script>
+
+
+    <script>
+     $(document).ready(function () {
+         $(".datepicker").datepicker();
+     });
+    </script>
+
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #DDE3EC;
+        }
+
+
+        #sw2 {
+            width: 1184px;
+            height: 400px;
+            float: left;
+            margin-left: 50px;
+            margin-bottom: 38px;
+        }
+
+        .fillout_form {
+            height: 100%;
+            width: 315px;
+            float: left;
+        }
+
+        .top_bar {
+            height: 162px;
+            width: 315px;
+            background-color: #003C6C;
+            border-right: 3px solid #19507B;
+        }
+
+        .content_title {
+            color: white;
+            font-weight: bold;
+            font-size: 19px;
+            float: left;
+            padding-left: 16px;
+        }
+
+        .sub_title {
+            font-weight: bold;
+            font-size: 11px;
+            float: left;
+            color: #6E90AC;
+            padding-top: 6px;
+            padding-left: 21px;
+        }
+
+        .wrapper_content {
+            width: 315px;
+            height: 30px;
+        }
+
+        .wrapper_content_subtitle {
+            width: 315px;
+            height: 30px;
+        }
+
+        .wrapper_content_icon {
+            width: 315px;
+            height: 27px;
+        }
+
+        .wrapper_small {
+            width: 315px;
+            height: 26px;
+        }
+
+        .wrapper_content_one {
+            width: 315px;
+            height: 33px;
+        }
+
+        .fa-ellipsis-h {
+            float: right;
+            color: #587F9E;
+            font-size: 20px;
+            padding-right: 17px;
+            padding-top: 10px;
+        }
+
+        .fa-chevron-left {
+            float: right;
+            color: #587F9E;
+            font-size: 18px;
+            padding-right: 10px;
+            padding-top: 10px;
+        }
+
+        .fa-refresh {
+            color: #ffffff;
+            font-size: 25px;
+            padding-left: 20px;
+            float: left;
+        }
+
+
+        .wrapper_form_list {
+            width: 315px;
+            height: 100%;
+        }
+
+        .fillout_container {
+            width: 315px;
+            height: 80px;
+            margin-top: 10px;
+        }
+
+        .sites {
+            float: left;
+            width: 256px;
+            height: 39px;
+            margin-left: 10px;
+            margin-top: 10px;
+            border-radius: 6px 6px 6px 6px;
+            background: white;
+            color: black;
+            font: normal normal normal normal 11px / 21px Lato, Helvetica, Arial, sans-serif;
+            padding: 10px 39px 10px 15px;
+        }
+
+        .options_content {
+            width: 251px;
+            height: 35px;
+            padding-left: 7px;
+            border-radius: 6px 6px 6px 6px;
+        }
+
+        .select_font {
+            color: #000000;
+            float: left;
+            padding-top: 10px;
+            padding-left: 6px;
+            font-size: 12px;
+        }
+
+        .fa-asterisk {
+            color: #EE5A52;
+            float: left;
+            padding-top: 8px;
+            padding-left: 15px;
+            font-size: 8px;
+        }
+
+        .fillout_bottomfloat {
+            margin-top: 50px;
+            width: 315px;
+            height: 79px;
+        }
+
+        .btn_submit {
+            float: left;
+            margin-left: 16px;
+            margin-top: 20px;
+            border: 1px #2e86af solid;
+            background-color: #61c1da;
+            border-radius: 5px;
+            height: 42px;
+            width: 180px;
+            color: #ffffff;
+        }
+
+        .empty_container {
+            width: 1411px;
+            float: left;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 315px;
+            right: 0;
+        }
+
+        .fa-area-chart {
+            color: white;
+            float: left;
+            margin-left: 19px;
+            font-size: 50px;
+        }
+
+        .fa-arrows-alt {
+            float: right;
+            color: #587F9E;
+            font-size: 20px;
+            padding-right: 17px;
+            padding-top: 10px;
+        }
+
+
+        .fa-cog {
+            color: #ffffff;
+            font-size: 25px;
+            padding-left: 20px;
+            float: left;
+        }
+
+        .fa-upload {
+            color: #ffffff;
+            font-size: 25px;
+            padding-left: 28px;
+            float: left;
+        }
+
+        .fa-check-circle {
+            color: #b200ff;
+            font-size: 20px;
+            padding-left: 28px;
+            padding-top: 20px;
+            float: left;
+        }
+
+        .graph_font {
+            font-size: 18px;
+            float: left;
+            padding-left: 9px;
+            padding-top: 20px;
+        }
+
+        .graph_container {
+            width: 1411px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+
+
+        .graph_title {
+            width: 1411px;
+            height: 48px;
+            margin-left: 50px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .table_design > thead > tr > th {
+            border-left: 2px solid gray;
+            border-bottom: 1px solid grey;
+        }
+
+        .table_design > tbody > tr > td {
+            border-bottom: 1px solid grey;
+        }
+
+        .cssload-loader {
+            position: relative;
+            width: 2.5em;
+            height: 2.5em;
+            transform: rotate(165deg);
+            display: block;
+            margin: auto;
+            z-index: 101;
+            margin-top: 200px;
+        }
+
+            .cssload-loader:before, .cssload-loader:after {
+                content: "";
+                position: absolute;
+                display: block;
+                width: 0.5em;
+                height: 0.5em;
+                border-radius: 0.25em;
+                transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+            }
+
+            .cssload-loader:before {
+                animation: before 2.3s infinite;
+                -o-animation: before 2.3s infinite;
+                -ms-animation: before 2.3s infinite;
+                -webkit-animation: before 2.3s infinite;
+                -moz-animation: before 2.3s infinite;
+            }
+
+            .cssload-loader:after {
+                animation: after 2.3s infinite;
+                -o-animation: after 2.3s infinite;
+                -ms-animation: after 2.3s infinite;
+                -webkit-animation: after 2.3s infinite;
+                -moz-animation: after 2.3s infinite;
+            }
+
+
+        @@keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225,20,98,0.75), 0 0.5em rgba(111,202,220,0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225,20,98,0.75), 1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+        }
+
+        @@-o-keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225,20,98,0.75), 0 0.5em rgba(111,202,220,0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225,20,98,0.75), 1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+        }
+
+        @@-ms-keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225,20,98,0.75), 0 0.5em rgba(111,202,220,0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225,20,98,0.75), 1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+        }
+
+        @@-webkit-keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225,20,98,0.75), 0 0.5em rgba(111,202,220,0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225,20,98,0.75), 1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+        }
+
+        @@-moz-keyframes before {
+            0% {
+                width: 0.5em;
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            35% {
+                width: 2.5em;
+                box-shadow: 0 -0.5em rgba(225,20,98,0.75), 0 0.5em rgba(111,202,220,0.75);
+            }
+
+            70% {
+                width: 0.5em;
+                box-shadow: -1em -0.5em rgba(225,20,98,0.75), 1em 0.5em rgba(111,202,220,0.75);
+            }
+
+            100% {
+                box-shadow: 1em -0.5em rgba(225,20,98,0.75), -1em 0.5em rgba(111,202,220,0.75);
+            }
+        }
+
+        @@keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61,184,143,0.75), -0.5em 0 rgba(233,169,32,0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61,184,143,0.75), -0.5em 1em rgba(233,169,32,0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+        }
+
+        @@-o-keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61,184,143,0.75), -0.5em 0 rgba(233,169,32,0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61,184,143,0.75), -0.5em 1em rgba(233,169,32,0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+        }
+
+        @@-ms-keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61,184,143,0.75), -0.5em 0 rgba(233,169,32,0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61,184,143,0.75), -0.5em 1em rgba(233,169,32,0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+        }
+
+        @@-webkit-keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61,184,143,0.75), -0.5em 0 rgba(233,169,32,0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61,184,143,0.75), -0.5em 1em rgba(233,169,32,0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+        }
+
+        @@-moz-keyframes after {
+            0% {
+                height: 0.5em;
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+
+            35% {
+                height: 2.5em;
+                box-shadow: 0.5em 0 rgba(61,184,143,0.75), -0.5em 0 rgba(233,169,32,0.75);
+            }
+
+            70% {
+                height: 0.5em;
+                box-shadow: 0.5em -1em rgba(61,184,143,0.75), -0.5em 1em rgba(233,169,32,0.75);
+            }
+
+            100% {
+                box-shadow: 0.5em 1em rgba(61,184,143,0.75), -0.5em -1em rgba(233,169,32,0.75);
+            }
+        }
+
+
+        .dropdown-check-list {
+            display: inline-block;
+        }
+
+            .dropdown-check-list .anchor {
+                position: relative;
+                cursor: pointer;
+                display: inline-block;
+                padding: 8px 39px 8px 15px;
+                border: 1px solid #ccc;
+                width: 256px;
+                height: 38px;
+                border-radius: 6px 6px 6px 6px;
+                background: white;
+                color: black;
+                margin-left: 10px;
+                font: normal normal normal normal 11px / 21px Lato, Helvetica, Arial, sans-serif;
+            }
+
+                .dropdown-check-list .anchor:after {
+                    position: absolute;
+                    content: "";
+                    border-left: 2px solid black;
+                    border-top: 2px solid black;
+                    padding: 5px;
+                    right: 10px;
+                    top: 20%;
+                    -moz-transform: rotate(-135deg);
+                    -ms-transform: rotate(-135deg);
+                    -o-transform: rotate(-135deg);
+                    -webkit-transform: rotate(-135deg);
+                    transform: rotate(-135deg);
+                }
+
+                .dropdown-check-list .anchor:active:after {
+                    right: 8px;
+                    top: 21%;
+                }
+
+            .dropdown-check-list ul.items {
+                padding: 2px;
+                display: none;
+                margin: 0;
+                border: 1px solid #ccc;
+                border-top: none;
+                width: 258px;
+                height: 100px;
+                margin-left: 10px;
+                background: white;
+                overflow: auto;
+            }
+
+                .dropdown-check-list ul.items li {
+                    list-style: none;
+                }
+
+
+        .graph_plot {
+            width: 1184px;
+            height: 400px;
+            float: left;
+            margin-left: 50px;
+            margin-bottom: 38px;
+        }
+    </style>
+
+
+</head>
+
+
+
+<body>
+
+
+    <div class="fillout_form">
+        <div class="top_bar">
+            <div class="wrapper_content_one">
+                <i class="fa fa-chevron-left"></i>
+                <i class="fa fa-ellipsis-h"></i>
+            </div>
+            <div class="wrapper_content">
+                <span class="content_title">Display Site History</span>
+            </div>
+
+            <div class="wrapper_content_subtitle">
+                <span class="sub_title">Default Directory</span>
+            </div>
+
+            <div class="wrapper_content_icon">
+                <i class="fa fa-refresh"></i>
+            </div>
+            <div class="wrapper_small">
+                <span style="color:white;font-size:10px;padding-left:16px;">Refresh</span>
+            </div>
+
+        </div>
+
+        <form target="_self" name="Form" onsubmit="return validateForm()" class="wrapper_form_list" style="border-right: 3px solid #B3B3B3;">
+            <div class="fillout_container" style="margin-top:0px;">
+                <i class="fa fa-asterisk"></i>
+                <span class="select_font">Select Site</span>
+
+                <select class="sites" name="sitename" onchange="change(this.value)">
+                    <!--http://www.color-hex.com/-->
+                    <!--http://stackoverflow.com/questions/14165632/asp-net-mvc-4-for-loop-posts-model-collection-properties-but-foreach-does-not-->
+                    @for (var i = 0; i < Model.sites.Count; i++)
+                    {
+                        if (i == ViewBag.site_selected)
+                        {
+                            <option selected value="@Html.ValueFor(x => Model.sites[i])">@Html.DisplayFor(x => Model.sites[i])</option>
+                        }
+                        else
+                        {
+                            <option value="@Html.ValueFor(x => Model.sites[i])">@Html.DisplayFor(x => Model.sites[i])</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <div class="fillout_container">
+                <i class="fa fa-asterisk"></i>
+                <span class="select_font">Entity Type</span>
+
+                <select class="sites">
+                    <option>Combined</option>
+                    <option>Seperated</option>
+                </select>
+            </div>
+
+            <div class="fillout_container">
+                <i class="fa fa-asterisk"></i>
+                <span class="select_font">Select Graph Data Type</span>
+
+                <div id="list1" class="dropdown-check-list" tabindex="100" style="margin-left:0px;margin-top: 16px;width: 271px;">
+                    <span class="anchor">Select Test</span>
+                    <ul id="items" class="items">
+                        @for (var i = 0; i < Model.graph_data_names.Count; i++)
+                        {
+                            if (i > 5)
+                            {
+                                <li><input type="checkbox" name="options" value="@Html.ValueFor(x => Model.graph_data_ids[i])">@Html.DisplayFor(x => Model.graph_data_names[i])</li>
+                            }
+                            else
+                            {
+                                <li><input checked type="checkbox" name="options" value="@Html.ValueFor(x => Model.graph_data_ids[i])">@Html.DisplayFor(x => Model.graph_data_names[i])</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="fillout_container">
+                <i class="fa fa-asterisk"></i>
+                <span class="select_font">Date From</span>
+
+                <div style="float:left;margin-top: 14px;margin-left: 14px;">
+
+                    <input id="first" name="select_from" placeholder="enter date" class="select_container data-padding options_content datepicker">
+                    <i class="fa fa-calendar" onclick="graphclick_first()" style="margin-right: 13px;"></i>
+
+                </div>
+            </div>
+
+
+
+            <div class="fillout_container">
+                <i class="fa fa-asterisk"></i>
+
+                <span class="select_font">Date To</span>
+
+                <div style="float:left;margin-top: 14px;margin-left: 14px;">
+
+                    <input id="second" name="to_select" placeholder="enter date" class="select_container data-padding options_content datepicker">
+                    <i class="fa fa-calendar" onclick="graphclick_second()" style="margin-right: 13px;"></i>
+                </div>
+            </div>
+
+
+            <div class="fillout_bottomfloat">
+                <input id="btn" class="btn_submit" type="submit" value="SUBMIT">
+            </div>
+
+
+        </form>
+
+    </div>
+
+
+
+    @if (Model.graph_options_selected.Count != 0)
+    {
+        <div class="empty_container">
+            <div class="top_bar" style="width: 1411px;">
+                <div class="wrapper_content_one" style="width: 1411px;">
+                    <i class="fa fa-chevron-left"></i>
+                    <i class="fa fa-arrows-alt"></i>
+                    <i class="fa fa-ellipsis-h"></i>
+
+                </div>
+                <div class="wrapper_content" style="width: 315px;height: 42px;">
+                    <i class="fa fa-area-chart"></i>
+                    <span class="content_title">Display Site History</span>
+                    <span class="sub_title">Database</span>
+                </div>
+
+
+                <div class="wrapper_content_icon" style="margin-left: 69px; margin-top: 27px;">
+                    <i class="fa fa-cog"></i>
+                    <i class="fa fa-refresh" style="padding-left:30px;"></i>
+                    <i class="fa fa-upload"></i>
+                </div>
+                <div class="wrapper_small" style="margin-left: 69px;">
+                    <span style="color:white;font-size:10px;padding-left:16px;">Setting</span>
+                    <span style="color:white;font-size:10px;padding-left:16px;">Refresh</span>
+                    <span style="color:white;font-size:10px;padding-left:16px;">Export</span>
+                </div>
+
+            </div>
+
+
+
+            <div class="graph_container">
+                @for (var i = 0; i < Model.graph_options_selected.Count; i++)
+                {
+                    <div class="graph_title">
+                        <i class="fa fa-check-circle"></i>
+                        <span class="graph_font"> @Html.ValueFor(x => Model.graph_options_selected[i])</span>
+                    </div>
+
+                    <div class="cssload-loader"></div>
+
+
+
+                    {
+                        Html.RenderAction("graph_site_data", new { number_selected = Model.graph_option_selected_id[i], select_from = ViewBag.select_from, to_select = ViewBag.to_select, sitename = ViewBag.site });
+                    }
+
+
+                }
+            </div>
+
+
+
+        </div>
+    }
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+
+            var checkList = document.getElementById('list1');
+            var items = document.getElementById('items');
+
+
+            checkList.getElementsByClassName('anchor')[0].onclick = function (evt) {
+
+
+                if (items.classList.contains('visible')) {
+                    items.classList.remove('visible');
+                    items.style.display = "none";
+                }
+
+                else {
+                    items.classList.add('visible');
+                    items.style.display = "block";
+                }
+
+
+            }
+
+            items.onblur = function (evt) {
+                items.classList.remove('visible');
+            }
+    </script>
+
+
+
+    <script>
+            function change(val) {
+                window.location.href = "site_data?sitename=" + val;
+            }
+
+
+    </script>
+
+
+
+
+
+</body>

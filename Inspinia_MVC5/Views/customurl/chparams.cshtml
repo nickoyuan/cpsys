@@ -1,0 +1,120 @@
+﻿@model ee.Models.chparamModel.chparamdb
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
+    <style>
+        .send_my_server {
+            margin-left: 100px;
+            margin-top: 100px;
+            width: 500px;
+            height: 200px;
+        }
+
+
+
+        .frequency_server {
+            width: 400px;
+            height: 100px;
+            margin-top: 50px;
+        }
+
+        .fillout_wrapper {
+            height: 170px;
+            overflow: visible;
+            margin-left: 40px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .site-border {
+            width: 550px !important;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            float: left;
+            height: 100px;
+        }
+
+        .sites {
+            float: left;
+            margin-top: 30px;
+            width: 220px;
+            height: 41px;
+            border-radius: 6px 6px 6px 6px;
+            background: white;
+            color: black;
+            font: normal normal normal normal 15px / 21px Lato, Helvetica, Arial, sans-serif;
+            padding: 10px 39px 10px 15px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+
+
+    <div class="send_my_server">
+        <form target="_self" id="check_box" name="forming" onsubmit="return validateform()">
+
+            <div style="margin-bottom: 20px; cursor: none !important; height:100px;">
+                <select class="sites" name="serialsite" onchange="change(this.value)">
+                    @for (var i = 0; i < Model.serial_site.Count; i++)
+                    {
+                        if (i == ViewBag.site_selected)
+                        {
+                            <option selected value="@Html.ValueFor(x => Model.serial_site[i])">@Html.DisplayFor(x => Model.serial_site[i])</option>
+                        }
+                        else
+                        {
+                            <option value="@Html.ValueFor(x => Model.serial_site[i])">@Html.DisplayFor(x => Model.serial_site[i])</option>
+                        }
+                    }
+                </select>
+            </div>
+
+
+            <div class="frequency_server">
+                <p>X_params: </p> <input type="text" name="xpa" value="@ViewBag.x_pa" placeholder="@ViewBag.freq">
+            </div>
+
+            <div class="frequency_server">
+                <p>Y_params: </p> <input type="text" name="ypa" value="@ViewBag.y_pa" placeholder="@ViewBag.freq">
+            </div>
+
+            <div class="frequency_server">
+                <p>z_params: </p> <input type="text" name="zpa" value="@ViewBag.z_pa" placeholder="@ViewBag.freq">
+            </div>
+
+            <div class="frequency_server">
+                <p>a_params: </p> <input type="text" name="apa" value="@ViewBag.a_pa" placeholder="@ViewBag.freq">
+            </div>
+
+
+
+            <input type="submit" value="Save response">
+        </form>
+    </div>
+
+
+
+
+</body>
+
+
+
+
+<script>
+    function change(val) {
+        window.location.href = "chparams?serialsite=" + val;
+    }
+
+</script>
+

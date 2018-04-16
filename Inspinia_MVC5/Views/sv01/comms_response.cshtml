@@ -1,0 +1,178 @@
+﻿@model stay_calm_db_tests.cpsys_url
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+
+    <style>
+        .send_my_server {
+           margin-left: 100px;
+           margin-top: 100px;
+            width: 500px;
+            height: 200px;
+        }
+
+        .selection_box {
+            background-color: #213D35;
+            width: 400px;
+            height: 100px;
+        }
+
+        .frequency_server{
+             width: 400px;
+            height: 100px;
+            margin-top: 50px;
+        }
+
+          .fillout_wrapper {
+                height: 170px;
+                overflow: visible;
+                margin-left: 40px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+        }
+
+            .site-border{
+           width: 550px !important;
+            border-top: 0;
+            border-left: 0;
+            border-right: 0;
+            float: left;
+            height:100px;
+        }
+
+       .sites {
+          float: left;
+            margin-top: 30px;
+            width: 220px;
+            height: 41px;
+            border-radius: 6px 6px 6px 6px;
+            background: white;
+            color: black;
+            font: normal normal normal normal 15px / 21px Lato, Helvetica, Arial, sans-serif;
+            padding: 10px 39px 10px 15px;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+    
+
+    <div class="send_my_server">
+        <form target="_self" id="check_box" name="forming" onsubmit="return validateform()">
+           
+            <div style="margin-bottom: 20px; cursor: none !important; height:100px;">
+                <select class="sites" name="serialsite" onchange="change(this.value)">
+                    @for (var i = 0; i < Model.serial_site.Count; i++)
+                    {
+                        if (i == ViewBag.site_selected)
+                        {
+                            <option selected value="@Html.ValueFor(x => Model.serial_site[i])">@Html.DisplayFor(x => Model.serial_site[i])</option>
+                        }
+                        else
+                        {
+                            <option value="@Html.ValueFor(x => Model.serial_site[i])">@Html.DisplayFor(x => Model.serial_site[i])</option>
+                        }
+                    }
+                </select>
+            </div>
+            
+            
+             <div class="radio_boxes">
+                <input checked="@ViewBag.selected_one" type="radio" name="radio_select" value="radio_ourserver" id="data_one">
+                <label class="check_title" for="c1">Send Data to EE server, this will return 1</label>
+            </div>
+
+
+      
+
+
+
+            <div class="selection_box">
+                <p> Please select server option </p>
+                <select name="sitename" style="max-width: 500px;">
+                    <option @ViewBag.radio_one value="select_EE">Store on Server Only</option>
+                    <option @ViewBag.radio_two value="select_storeandsend">Store on Server and Forward to CPSYS</option>
+                    <option @ViewBag.radio_three value="select_cpsys">Do not Store on Server and Forward to CPSYS</option>
+                </select>
+            </div>
+
+
+
+            <div class="radio_boxes">
+                <input checked="@ViewBag.selected_two" type="radio" name="radio_select" value="radio_cpsys" id="data_two">
+                <label class="check_title" for="c2"> Send Data to CPSYS server, this will return 2 </label>
+            </div>
+            <div class="radio_boxes">
+                <input checked="@ViewBag.selected_three" type="radio" name="radio_select" value="radio_both" id="data_three">
+                <label class="check_title" for="c3"> Send Data to EE and CPSYS server, this will return 3 </label>
+            </div>
+
+
+            <div class="frequency_server">
+               <p>Minutes: </p> <input type="text" name="freq" value="@ViewBag.freq" placeholder="@ViewBag.freq" ><span>min</span>
+            </div>
+
+
+
+            <input type="submit" value="Save response">
+        </form>
+    </div>
+
+
+
+
+</body>
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+      $('#check_box').change(function(){
+         if ($('#data_one').is(':checked') === true) {
+             $('.selection_box').fadeIn();
+         }
+         else {
+             $('.selection_box').fadeOut();
+         }
+
+
+       });
+    });
+
+
+
+
+</script>
+
+<script>
+    function change(val) {
+        window.location.href = "comms_response?serialsite=" + val;
+    }
+
+</script>
+
+
+<script>
+
+    function validateform()
+    {
+        var a = document.forms["forming"]["freq"].value;
+
+        if(a<=0 || null)
+        {
+            alert("Please type in a Frequency (Hz) (Must be positive number !)");
+            return false;
+        }
+    }
+
+</script>

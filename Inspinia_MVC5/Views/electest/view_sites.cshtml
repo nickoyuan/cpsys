@@ -1,0 +1,79 @@
+﻿@model  IEnumerable<stay_calm_db_tests.siteuser>
+
+<head>
+    <style>
+        .table {
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+
+        #details {
+            padding-left: 50px;
+        }
+
+        .view_sites {
+            margin-left: 100px;
+            margin-top: 30px;
+        }
+
+           .back_btn_design{
+            float:left;
+          margin-left: 90px;
+         background-color: #5DFC0A;
+         width: 100px !important;
+         height: 30px !important;
+         font-size: 14px;
+         text-align: center;
+         border: 1px solid #357ebd;
+         color: #000000;
+         padding-top: 4px;
+      }
+
+      .back_btn_design:hover{
+         color: #000000;
+       }
+    </style>
+</head>
+
+<h2 id="details">Site List</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Site </th>
+            <th>GMT</th>
+            <th>Serial </th>
+            <th>Edit </th>
+            <th>Data Types </th>
+            <th>HG Status</th>
+            <th>I/O Alarm </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelitem => item.user_site)</td>
+                <td>@Html.DisplayFor(modelitem => item.sitetoboards.serialboard)</td>
+                <td>@Html.DisplayFor(modelitem => item.GMT)</td>
+
+                @if (item.serial_board_id.Equals(0))
+                {
+                <td>@Html.ActionLink("No serial attached ! Please click here to Attach a Serial", "attach_a_serial", new { ID = item.Id })</td>
+                <td>@Html.ActionLink("Delete Site", "dele_site", new { ID = item.Id })</td>
+                }
+                else {
+                <td>@Html.ActionLink("Edit site", "edit_sites", new { ID = item.Id })</td>
+                <td>@Html.ActionLink("View Data Types", "edit_graph_limit", new { ID = item.Id })</td>
+                <td>@Html.ActionLink("View HG status", "view_hg_status", new { ID = item.Id })</td> 
+                <td>@Html.ActionLink("View I/O Type", "view_ioalarm_type", new { ID = item.Id })</td> 
+                }
+             </tr>
+        }
+    </tbody>
+  </table>
+
+
+<a>@Html.ActionLink("Go Back", "user_current", "sv01", new { @class = "back_btn_design" })</a> 
+
+

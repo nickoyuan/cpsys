@@ -1,0 +1,156 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{
+    ViewBag.Title = "Edit Users";
+}
+
+
+
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-10">
+        <h2>Edit Terminal Serial</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="@Url.Action("Dashboards", "Dashboards")">Home</a>
+            </li>
+            <li class="active">
+                <strong>User edit</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <form id="form">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tabs-container">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#tab-1"> User info</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab-1" class="tab-pane active">
+                            <div class="panel-body">
+
+                                    <table class="table table-stripped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                   Username
+                                                </th>
+                                                <th>
+                                                   Password
+                                                </th>
+                                                <th>
+                                                    Email
+                                                </th>
+                                                <th>
+                                                    Sites
+                                                </th>
+                                                <th>
+                                                    Delete
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" class="form-control" name="editserial" value="@ViewBag.serial" />
+                                                    <input type="hidden" name="id" value="@ViewBag.id_serial">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="editserial" value="@ViewBag.serial" />
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="editserial" value="@ViewBag.serial" />
+                                                </td>
+                                                 <td>
+                                                     <select id="selectuser" data-placeholder="Choose a Serial..." class="chosen-select form-control" multiple name="options">
+                                                             <option value="1">Test option</option>
+                                                             <option value="1">Test option</option>
+                                                             <option value="1">Test option</option>
+                                                     </select>
+                                                 </td>
+                                                <td>
+                                                    <a href="@Url.Action("edit_page","siteaccount",new {delete_id =ViewBag.id_serial})" type="button" class="btn btn-white deletebtn"><i class="fa fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                <a href="@Url.Action("edit_page","siteaccount",new {back_id = "1"})" type="button" class="btn btn-warning btn-lg backbtn">Back</a>
+                                <button type="submit" class="btn btn-warning btn-lg savebtn" style="float:right;">Save Changes</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Styles {
+    @Styles.Render("~/plugins/sweetAlertStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/sweetAlert")
+    @Scripts.Render("~/plugins/chosen")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+
+          
+
+            $('#form').on('submit', function (e) {
+
+                $('.savebtn').show(function () {
+                    swal({
+                        title: "Saving....",
+                        text: "Please wait !",
+                    });
+                });
+
+                $.ajax({
+                    url: "edit_page",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function () {
+                        $('.savebtn').show(function () {
+                            swal({
+                                title: "Saved!",
+                                text: "You will be Re-Directed Soon!",
+                                type: "success"
+                            });
+                        });
+                    },
+                    error: function (jXHR, textStatus, errorThrown) {
+                        alert("Error has occured, Please check your internet or Browser !");
+                    }
+                });
+            });
+
+
+
+
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': { allow_single_deselect: true },
+                '.chosen-select-no-single': { disable_search_threshold: 10 },
+                '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+                '.chosen-select-width': { width: "95%" }
+            }
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+
+
+        });
+    </script>
+
+
+}

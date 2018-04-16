@@ -1,0 +1,751 @@
+﻿@{ Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="row  border-bottom white-bg dashboard-header">
+
+    <div class="col-sm-3">
+        <h2>Welcome to Elemental Electronics Monitoring</h2>
+        <small>You have 6 notifications.</small>
+        <ul class="list-group clear-list m-t">
+            <li class="list-group-item fist-item">
+                <span class="pull-right">
+                    30 Units
+                </span>
+                <span class="label label-success">1</span> Pools With Low Chlorine
+            </li>
+            <li class="list-group-item">
+                <span class="pull-right">
+                    20 Units
+                </span>
+                <span class="label label-info">2</span> Critical Alerts
+            </li>
+            <li class="list-group-item">
+                <span class="pull-right">
+                    38 Sites
+                </span>
+                <span class="label label-primary">3</span> New Potential Sites
+            </li>
+            <li class="list-group-item">
+                <span class="pull-right">
+                    8 Units
+                </span>
+                <span class="label label-default">4</span> High Temperature Sites
+            </li>
+            <li class="list-group-item">
+                <span class="pull-right">
+                    6 Messages
+                </span>
+                <span class="label label-primary">5</span> New Notifications
+            </li>
+        </ul>
+    </div>
+
+
+    <div class="col-sm-6">
+
+
+        <div class="flot-chart dashboard-chart">
+            <div class="flot-chart-content" id="flot-dashboard-chart"></div>
+        </div>
+
+
+
+        <div class="row text-left">
+            <div class="col-xs-4">
+                <div class="m-l-md">
+                    <span class="h4 font-bold m-t block">1,000</span>
+                    <small class="text-muted m-b block">Number of Critical Events</small>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <span class="h4 font-bold m-t block">655</span>
+                <small class="text-muted m-b block">Sent Emails Past 7 Days</small>
+            </div>
+            <div class="col-xs-4">
+                <span class="h4 font-bold m-t block">1,222</span>
+                <small class="text-muted m-b block">New Products Required</small>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="statistic-box">
+            <h4>
+                New Project Tasks to complete
+            </h4>
+            <p>
+                You have two project with not completed task.
+            </p>
+            <div class="row text-center">
+                <div class="col-lg-6">
+                    <canvas id="polarChart" width="100" height="100"></canvas>
+                    <h5>Current Projects</h5>
+                </div>
+                <div class="col-lg-6">
+                    <canvas id="doughnutChart" width="100" height="100"></canvas>
+                    <h5>Yearly Projects</h5>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="row row-modifier">
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Online/Offline</span>
+                <h5>Western Australia</h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div id="gauge" style="height:120px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Online/Offline</span>
+                <h5>Northen Territory Australia</h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div id="gauge_one" style="height:120px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Online/Offline</span>
+                <h5>South Australia</h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div id="gauge_two" style="height:120px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Online/Offline</span>
+                <h5>QueensLand</h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div id="gauge_three" style="height:120px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Online/Offline</span>
+                <h5>New South Wales</h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div id="gauge_four" style="height:120px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Online/Offline</span>
+                <h5>Victoria</h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div id="gauge_five" style="height:120px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Online/Offline</span>
+                <h5>Tasmania</h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div id="gauge_six" style="height:120px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <span class="label label-success pull-right">Online/Offline</span>
+                <h5>New Zealand</h5>
+            </div>
+            <div class="ibox-content">
+                <div>
+                    <div id="gauge_seven" style="height:120px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Critical Alerts</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!--Partial Content for Critical Alerts-->
+
+                <div class="ibox-content partialContent" data-url="/Dashboard/criticalview">
+                    <div id="criticalviewcircle" class="sk-spinner sk-spinner-circle">
+                        <div class="sk-circle1 sk-circle"></div>
+                        <div class="sk-circle2 sk-circle"></div>
+                        <div class="sk-circle3 sk-circle"></div>
+                        <div class="sk-circle4 sk-circle"></div>
+                        <div class="sk-circle5 sk-circle"></div>
+                        <div class="sk-circle6 sk-circle"></div>
+                        <div class="sk-circle7 sk-circle"></div>
+                        <div class="sk-circle8 sk-circle"></div>
+                        <div class="sk-circle9 sk-circle"></div>
+                        <div class="sk-circle10 sk-circle"></div>
+                        <div class="sk-circle11 sk-circle"></div>
+                        <div class="sk-circle12 sk-circle"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Warning Alerts</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!--Partial Content for Warning Alerts-->
+
+                <div class="ibox-content partialContent" data-url="/Dashboard/warningview">
+                    <div id="warningviewcircle" class="sk-spinner sk-spinner-circle">
+                        <div class="sk-circle1 sk-circle"></div>
+                        <div class="sk-circle2 sk-circle"></div>
+                        <div class="sk-circle3 sk-circle"></div>
+                        <div class="sk-circle4 sk-circle"></div>
+                        <div class="sk-circle5 sk-circle"></div>
+                        <div class="sk-circle6 sk-circle"></div>
+                        <div class="sk-circle7 sk-circle"></div>
+                        <div class="sk-circle8 sk-circle"></div>
+                        <div class="sk-circle9 sk-circle"></div>
+                        <div class="sk-circle10 sk-circle"></div>
+                        <div class="sk-circle11 sk-circle"></div>
+                        <div class="sk-circle12 sk-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Information Alerts</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!--Partial Content for Warning Alerts-->
+
+                <div class="ibox-content partialContent" data-url="/Dashboard/infoview">
+                    <div id="infoviewcircle" class="sk-spinner sk-spinner-circle">
+                        <div class="sk-circle1 sk-circle"></div>
+                        <div class="sk-circle2 sk-circle"></div>
+                        <div class="sk-circle3 sk-circle"></div>
+                        <div class="sk-circle4 sk-circle"></div>
+                        <div class="sk-circle5 sk-circle"></div>
+                        <div class="sk-circle6 sk-circle"></div>
+                        <div class="sk-circle7 sk-circle"></div>
+                        <div class="sk-circle8 sk-circle"></div>
+                        <div class="sk-circle9 sk-circle"></div>
+                        <div class="sk-circle10 sk-circle"></div>
+                        <div class="sk-circle11 sk-circle"></div>
+                        <div class="sk-circle12 sk-circle"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Contractor Alerts</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!--Partial Content for Warning Alerts-->
+
+                <div class="ibox-content partialContent" data-url="/Dashboard/conview">
+                    <div id="conviewcircle" class="sk-spinner sk-spinner-circle">
+                        <div class="sk-circle1 sk-circle"></div>
+                        <div class="sk-circle2 sk-circle"></div>
+                        <div class="sk-circle3 sk-circle"></div>
+                        <div class="sk-circle4 sk-circle"></div>
+                        <div class="sk-circle5 sk-circle"></div>
+                        <div class="sk-circle6 sk-circle"></div>
+                        <div class="sk-circle7 sk-circle"></div>
+                        <div class="sk-circle8 sk-circle"></div>
+                        <div class="sk-circle9 sk-circle"></div>
+                        <div class="sk-circle10 sk-circle"></div>
+                        <div class="sk-circle11 sk-circle"></div>
+                        <div class="sk-circle12 sk-circle"></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Transactions worldwide</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+
+                    <div class="row">
+
+
+
+                        <div class="col-lg-6">
+
+                            <!--
+                              <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input type="text" placeholder="Search" class="input-sm form-control"> <span class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                            -->
+                            <!--Partial Content for Site Lists -->
+                            <div class="ibox-content partialContent sitelist-modifier" data-url="/Dashboard/Sitelist">
+                                <div id="sitelistcircle" class="sk-spinner sk-spinner-circle">
+                                    <div class="sk-circle1 sk-circle"></div>
+                                    <div class="sk-circle2 sk-circle"></div>
+                                    <div class="sk-circle3 sk-circle"></div>
+                                    <div class="sk-circle4 sk-circle"></div>
+                                    <div class="sk-circle5 sk-circle"></div>
+                                    <div class="sk-circle6 sk-circle"></div>
+                                    <div class="sk-circle7 sk-circle"></div>
+                                    <div class="sk-circle8 sk-circle"></div>
+                                    <div class="sk-circle9 sk-circle"></div>
+                                    <div class="sk-circle10 sk-circle"></div>
+                                    <div class="sk-circle11 sk-circle"></div>
+                                    <div class="sk-circle12 sk-circle"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+
+                            <div class="partialContent" data-url="/Dashboard/bingmaps">
+                                <div id="mapcircle" class="sk-spinner sk-spinner-circle">
+                                    <div class="sk-circle1 sk-circle"></div>
+                                    <div class="sk-circle2 sk-circle"></div>
+                                    <div class="sk-circle3 sk-circle"></div>
+                                    <div class="sk-circle4 sk-circle"></div>
+                                    <div class="sk-circle5 sk-circle"></div>
+                                    <div class="sk-circle6 sk-circle"></div>
+                                    <div class="sk-circle7 sk-circle"></div>
+                                    <div class="sk-circle8 sk-circle"></div>
+                                    <div class="sk-circle9 sk-circle"></div>
+                                    <div class="sk-circle10 sk-circle"></div>
+                                    <div class="sk-circle11 sk-circle"></div>
+                                    <div class="sk-circle12 sk-circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Styles {
+    @Styles.Render("~/plugins/c3Styles")
+}
+
+@section Scripts {
+    @Scripts.Render("~/plugins/flot")
+    @Scripts.Render("~/plugins/sparkline")
+    @Scripts.Render("~/plugins/chartJs")
+    @Scripts.Render("~/plugins/peity")
+    @Scripts.Render("~/plugins/vectorMap")
+
+    @Scripts.Render("~/plugins/d3")
+    @Scripts.Render("~/plugins/c3")
+
+
+
+    <script charset="UTF-8" type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
+
+    <script type="text/javascript">
+    $(document).ready(function (e) {
+
+        var site = site || {};
+        site.baseUrl = site.baseUrl || "";
+
+        $(".partialContent").each(function (index, item) {
+            var url = site.baseUrl + $(item).data("url");
+            if (url && url.length > 0) {
+                $(item).load(url);
+            }
+        });
+
+    });
+
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            c3.generate({
+                bindto: '#gauge',
+                data: {
+                    columns: [
+                        ['Online', 38]
+                    ],
+
+                    type: 'gauge'
+                },
+                color: {
+                    pattern: ['#1ab394', '#BABABA']
+
+                }
+            });
+
+            c3.generate({
+                bindto: '#gauge_one',
+                data: {
+                    columns: [
+                        ['Online', 83]
+                    ],
+
+                    type: 'gauge'
+                },
+                color: {
+                    pattern: ['#F5CE29', '#BABABA']
+
+                }
+            });
+
+            c3.generate({
+                bindto: '#gauge_two',
+                data: {
+                    columns: [
+                        ['Online', 50]
+                    ],
+
+                    type: 'gauge'
+                },
+                color: {
+                    pattern: ['#011323', '#BABABA']
+
+                }
+            });
+
+            c3.generate({
+                bindto: '#gauge_three',
+                data: {
+                    columns: [
+                        ['Online', 73]
+                    ],
+
+                    type: 'gauge'
+                },
+                color: {
+                    pattern: ['#CF6766', '#BABABA']
+
+                }
+            });
+
+
+            c3.generate({
+                bindto: '#gauge_four',
+                data: {
+                    columns: [
+                        ['Online', 21]
+                    ],
+
+                    type: 'gauge'
+                },
+                color: {
+                    pattern: ['#6C648B', '#BABABA']
+
+                }
+            });
+
+            c3.generate({
+                bindto: '#gauge_five',
+                data: {
+                    columns: [
+                        ['Online', 100]
+                    ],
+
+                    type: 'gauge'
+                },
+                color: {
+                    pattern: ['#4B6D9D', '#BABABA']
+
+                }
+            });
+
+            c3.generate({
+                bindto: '#gauge_six',
+                data: {
+                    columns: [
+                        ['Online', 90]
+                    ],
+
+                    type: 'gauge'
+                },
+                color: {
+                    pattern: ['#F24C4E', '#BABABA']
+
+                }
+            });
+
+
+            c3.generate({
+                bindto: '#gauge_seven',
+                data: {
+                    columns: [
+                        ['Online', 47]
+                    ],
+
+                    type: 'gauge'
+                },
+                color: {
+                    pattern: ['#F0584A', '#BABABA']
+
+                }
+            });
+
+            $(".bar_dashboard").peity("bar", {
+                fill: ["#1ab394", "#d7d7d7"],
+                width: 100
+            })
+
+            $("#sparkline8").sparkline([5, 6, 7, 2, 0, 4, 2, 4, 5, 7, 2, 4, 12, 14, 4, 2, 14, 12, 7], {
+                type: 'bar',
+                barWidth: 8,
+                height: '150px',
+                barColor: '#1ab394',
+                negBarColor: '#c6c6c6'
+            });
+
+            var updatingChart = $(".updating-chart").peity("line", { fill: '#1ab394', stroke: '#169c81', width: 64 })
+
+            setInterval(function () {
+                var random = Math.round(Math.random() * 10)
+                var values = updatingChart.text().split(",")
+                values.shift()
+                values.push(random)
+
+                updatingChart
+                    .text(values.join(","))
+                    .change()
+            }, 1000);
+
+
+
+            var data1 = [
+                [0, 4], [1, 8], [2, 5], [3, 10], [4, 4], [5, 16], [6, 5], [7, 11], [8, 6], [9, 11], [10, 30], [11, 10], [12, 13], [13, 4], [14, 3], [15, 3], [16, 6]
+            ];
+            var data2 = [
+                [0, 1], [1, 0], [2, 2], [3, 0], [4, 1], [5, 3], [6, 1], [7, 5], [8, 2], [9, 3], [10, 2], [11, 1], [12, 0], [13, 2], [14, 8], [15, 0], [16, 0]
+            ];
+
+
+            $("#flot-dashboard-chart").length && $.plot($("#flot-dashboard-chart"), [
+                data1, data2
+            ],
+                    {
+                        series: {
+                            lines: {
+                                show: false,
+                                fill: true
+                            },
+                            splines: {
+                                show: true,
+                                tension: 0.4,
+                                lineWidth: 1,
+                                fill: 0.4
+                            },
+                            points: {
+                                radius: 0,
+                                show: true
+                            },
+                            shadowSize: 2
+                        },
+                        grid: {
+                            hoverable: true,
+                            clickable: true,
+                            tickColor: "#d5d5d5",
+                            borderWidth: 1,
+                            color: '#d5d5d5'
+                        },
+                        colors: ["#1ab394", "#464f88"],
+                        xaxis: {
+                        },
+                        yaxis: {
+                            ticks: 4
+                        },
+                        tooltip: false
+                    }
+            );
+
+            var doughnutData = [
+                {
+                    value: 30,
+                    color: "#a3e1d4",
+                    highlight: "#1ab394",
+                    label: "App"
+                },
+                {
+                    value: 5,
+                    color: "#dedede",
+                    highlight: "#1ab394",
+                    label: "Software"
+                },
+                {
+                    value: 10,
+                    color: "#b5b8cf",
+                    highlight: "#1ab394",
+                    label: "Site Check"
+                }
+            ];
+
+            var doughnutOptions = {
+                segmentShowStroke: true,
+                segmentStrokeColor: "#fff",
+                segmentStrokeWidth: 2,
+                percentageInnerCutout: 45, // This is 0 for Pie charts
+                animationSteps: 100,
+                animationEasing: "easeOutBounce",
+                animateRotate: true,
+                animateScale: false,
+            };
+
+            var ctx = document.getElementById("doughnutChart").getContext("2d");
+            var DoughnutChart = new Chart(ctx).Doughnut(doughnutData, doughnutOptions);
+
+            var polarData = [
+                {
+                    value: 30,
+                    color: "#a3e1d4",
+                    highlight: "#1ab394",
+                    label: "App"
+                },
+                {
+                    value: 10,
+                    color: "#dedede",
+                    highlight: "#1ab394",
+                    label: "Software"
+                },
+                {
+                    value: 20,
+                    color: "#b5b8cf",
+                    highlight: "#1ab394",
+                    label: "Site Check"
+                }
+            ];
+
+            var polarOptions = {
+                scaleShowLabelBackdrop: true,
+                scaleBackdropColor: "rgba(255,255,255,0.75)",
+                scaleBeginAtZero: true,
+                scaleBackdropPaddingY: 1,
+                scaleBackdropPaddingX: 1,
+                scaleShowLine: true,
+                segmentShowStroke: true,
+                segmentStrokeColor: "#fff",
+                segmentStrokeWidth: 2,
+                animationSteps: 100,
+                animationEasing: "easeOutBounce",
+                animateRotate: true,
+                animateScale: false,
+            };
+            var ctx = document.getElementById("polarChart").getContext("2d");
+            var Polarchart = new Chart(ctx).PolarArea(polarData, polarOptions);
+
+        });
+    </script>
+
+
+
+}
+

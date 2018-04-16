@@ -1,0 +1,129 @@
+﻿@model  IEnumerable<stay_calm_db_tests.io_alarms>
+
+@using System.Linq
+
+<head>
+    <style>
+        .table {
+            margin-left: 40px;
+        }
+
+        #details {
+            padding-left: 50px;
+        }
+
+        #title {
+            padding-left: 60px;
+        }
+
+        #title_username p {
+            float: left;
+            padding-left: 40px;
+            padding-top: 30px;
+            padding-bottom: 20px;
+            font-weight: bold;
+        }
+
+        #nomodel {
+            float: left;
+            padding-left: 50px;
+            padding-top: 20px;
+            padding-bottom: 30px;
+        }
+
+        #adding_more_sites p {
+            padding-top: 50px;
+            padding-left: 40px;
+            padding-bottom: 20px;
+            float: left;
+        }
+
+        .back_btn_design {
+            float: left;
+            margin-left: 90px;
+            background-color: #5DFC0A;
+            width: 100px !important;
+            height: 30px !important;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid #357ebd;
+            color: #000000;
+            padding-top: 4px;
+        }
+
+            .back_btn_design:hover {
+                color: #000000;
+            }
+    </style>
+</head>
+
+
+<h2 id="details">Sites Currently attached to User</h2>
+
+<div id="title_username">
+
+    @foreach (var item in Model.Take(1))
+    {
+        <p>Username:        @Html.DisplayFor(modelitem => item.siteuser.user_site) </p>
+        <p>Password:        @Html.DisplayFor(modelitem => item.siteuser.sitetoboards.serialboard) </p>
+        <p>ID:              @Html.DisplayFor(modelitem => item.siteuser.Id)</p>
+    }
+</div>
+
+
+<!--https://code.msdn.microsoft.com/ASPNET-MVC-Application-b01a9fe8/sourcecode?fileId=134759&pathId=1349546619-->
+
+@if (!Model.Any())
+{
+    <div id="nomodel">
+        <p>
+            No HG status are attached to this User
+            <br />Please contact Add limits by going back
+        </p>
+    </div>
+
+}
+else
+{
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Site Name</th>
+                <th>Terminal Serial </th>
+                <th>Site  id</th>
+                <th>Switch Number</th>
+                <th>Alarm Name</th>
+                <th>Edit Alert Type</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelitem => item.siteuser.user_site)</td>
+                    <td>@Html.DisplayFor(modelitem => item.siteuser.sitetoboards.serialboard)</td>
+                    <td>@Html.DisplayFor(modelitem => item.siteuser.Id)</td>
+                    <td>@Html.DisplayFor(modelitem => item.switch_number)</td>
+                    <td>@Html.DisplayFor(modelitem => item.alarm_name)</td>
+                    <td>@Html.ActionLink("Edit Alert Type", "edit_alarms", new { ID = item.Id })</td>
+                    <td>@Html.ActionLink("Delete", "delete_io_alarms", new { ID = item.Id })</td>
+               </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<div id="adding_more_sites">
+
+    <a>@Html.ActionLink("Add Alarms", "add_alarms", new { id = @ViewBag.idforlinkinglimit })</a>
+    <a>@Html.ActionLink("Go Back", "view_sites", "sv01", new { @class = "back_btn_design" })</a>
+
+</div>
+
+
+
+
+
+
